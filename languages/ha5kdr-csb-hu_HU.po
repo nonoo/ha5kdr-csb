@@ -1,0 +1,44 @@
+msgid "Callsign"
+msgstr "Hívójel"
+
+msgid "Partnercode"
+msgstr "PK"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Country"
+msgstr "Ország"
+
+msgid "ZIP"
+msgstr "ISZ"
+
+msgid "City"
+msgstr "Város"
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Licensenum"
+msgstr "ESZ"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "State"
+msgstr "Státusz"
+
+msgid "Level"
+msgstr "Szint"
+
+msgid "Morse"
+msgstr "Morze"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "Valid"
+msgstr "Érvényes"
+
+msgid "Operator"
+msgstr "Kezelő"

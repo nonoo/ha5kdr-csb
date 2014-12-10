@@ -1,0 +1,44 @@
+msgid "Callsign"
+msgstr "Callsign"
+
+msgid "Partnercode"
+msgstr "PC"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "ZIP"
+msgstr "ZIP"
+
+msgid "City"
+msgstr "City"
+
+msgid "Address"
+msgstr "Address"
+
+msgid "Licensenum"
+msgstr "Licensenum"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "State"
+msgstr "State"
+
+msgid "Level"
+msgstr "Level"
+
+msgid "Morse"
+msgstr "Morse"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Valid"
+msgstr "Valid"
+
+msgid "Operator"
+msgstr "Operator"

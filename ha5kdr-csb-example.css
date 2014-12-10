@@ -1,0 +1,36 @@
+#ha5kdr-csb-search {
+	text-align: right;
+	font-size: 12px;
+}
+
+#ha5kdr-csb-search-string {
+	height: 15px;
+	background-color: #aaa;
+	vertical-align: middle;
+}
+
+#ha5kdr-csb-search-button {
+	vertical-align: middle;
+}
+
+#ha5kdr-csb-container {
+	margin-top: 20px;
+	overflow-x: scroll;
+	font-size: 12px;
+}
+
+#ha5kdr-csb-container thead tr, #ha5kdr-csb-container .jtable-bottom-panel {
+	background-color: #393939;
+}
+
+#ha5kdr-csb-container td {
+	padding: 0;
+}
+
+#ha5kdr-csb-container .jtable-row-even {
+	background-color: #292929;
+}
+
+#ha5kdr-csb-container .jtable-page-info {
+	padding-left: 10px;
+}
