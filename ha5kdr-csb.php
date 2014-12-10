@@ -25,21 +25,21 @@ function ha5kdrcsb_generate() {
 	$out .= '				listAction: "' . plugins_url('ha5kdr-csb-getdata.php', __FILE__) . '",' . "\n";
 	$out .= '			},' . "\n";
 	$out .= '			fields: {' . "\n";
-	$out .= '				callsign: { title: "Hívójel" },' . "\n";
-	$out .= '				partnercode: { title: "PK", key: true, visibility: "hidden" },' . "\n";
-	$out .= '				name: { title: "Név", width: "15%" },' . "\n";
-	$out .= '				country: { title: "Ország", visibility: "hidden" },' . "\n";
-	$out .= '				zip: { title: "ISZ", visibility: "hidden" },' . "\n";
-	$out .= '				city: { title: "Város" },' . "\n";
-	$out .= '				streethouse: { title: "Cím", width: "15%" },' . "\n";
-	$out .= '				licensenumber: { title: "ESZ", visibility: "hidden" },' . "\n";
-	$out .= '				communityorprivate: { title: "Típus" },' . "\n";
-	$out .= '				state: { title: "Státusz", visibility: "hidden" },' . "\n";
-	$out .= '				levelofexam: { title: "Szint" },' . "\n";
-	$out .= '				morse: { title: "Morze" },' . "\n";
-	$out .= '				licensedate: { title: "Dátum", type: "date", width: "15%", visibility: "hidden" },' . "\n";
-	$out .= '				validity: { title: "Érvényes", type: "date", width: "15%" },' . "\n";
-	$out .= '				chiefoperator: { title: "Kezelő", visibility: "hidden" }' . "\n";
+	$out .= '				callsign: { title: "' . __('Callsign', 'ha5kdr-csb') . '" },' . "\n";
+	$out .= '				partnercode: { title: "' . __('Partnercode', 'ha5kdr-csb') . '", key: true, visibility: "hidden" },' . "\n";
+	$out .= '				name: { title: "' . __('Name', 'ha5kdr-csb') . '", width: "15%" },' . "\n";
+	$out .= '				country: { title: "' . __('Country', 'ha5kdr-csb') . '", visibility: "hidden" },' . "\n";
+	$out .= '				zip: { title: "' . __('ZIP', 'ha5kdr-csb') . '", visibility: "hidden" },' . "\n";
+	$out .= '				city: { title: "' . __('City', 'ha5kdr-csb') . '" },' . "\n";
+	$out .= '				streethouse: { title: "' . __('Address', 'ha5kdr-csb') . '", width: "15%" },' . "\n";
+	$out .= '				licensenumber: { title: "' . __('Licensenum', 'ha5kdr-csb') . '", visibility: "hidden" },' . "\n";
+	$out .= '				communityorprivate: { title: "' . __('Type', 'ha5kdr-csb') . '" },' . "\n";
+	$out .= '				state: { title: "' . __('State', 'ha5kdr-csb') . '", visibility: "hidden" },' . "\n";
+	$out .= '				levelofexam: { title: "' . __('Level', 'ha5kdr-csb') . '" },' . "\n";
+	$out .= '				morse: { title: "' . __('Morse', 'ha5kdr-csb') . '" },' . "\n";
+	$out .= '				licensedate: { title: "' . __('Date', 'ha5kdr-csb') . '", type: "date", width: "15%", visibility: "hidden" },' . "\n";
+	$out .= '				validity: { title: "' . __('Valid', 'ha5kdr-csb') . '", type: "date", width: "15%" },' . "\n";
+	$out .= '				chiefoperator: { title: "' . __('Operator', 'ha5kdr-csb') . '", visibility: "hidden" }' . "\n";
 	$out .= '			}' . "\n";
 	$out .= '		});' . "\n";
 	$out .= '		$("#ha5kdr-csb-search-button").click(function (e) {' . "\n";
@@ -71,7 +71,7 @@ function ha5kdrcsb_filter($content) {
     }
     return $content;
 }
-load_plugin_textdomain('ha5kdr-csb-wordpress-plugin', false, basename(dirname(__FILE__)) . '/languages');
+load_plugin_textdomain('ha5kdr-csb', false, basename(dirname(__FILE__)) . '/languages');
 add_filter('the_content', 'ha5kdrcsb_filter');
 add_filter('the_content_rss', 'ha5kdrcsb_filter');
 add_filter('the_excerpt', 'ha5kdrcsb_filter');
