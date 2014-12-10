@@ -6,7 +6,7 @@
 		return strip_tags(stripslashes(trim($s)));
 	}
 
-	include('ha5kdr-csb-config.php');
+	include('ha5kdr-csb-config.inc.php');
 
 	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 	if (!$conn) {
