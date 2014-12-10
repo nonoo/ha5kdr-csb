@@ -34,3 +34,7 @@
 #ha5kdr-csb-container .jtable-page-info {
 	padding-left: 10px;
 }
+
+#ha5kdr-csb-container table { border: none; border-collapse: collapse; }
+#ha5kdr-csb-container table td { border-left: 1px solid #333; }
+#ha5kdr-csb-container table td:first-child { border-left: none; }
