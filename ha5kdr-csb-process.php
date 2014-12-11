@@ -3,7 +3,7 @@
 	ini_set('display_errors','On');
 	error_reporting(E_ALL);
 
-	include('ha5kdr-csb-process-config.php');
+	include('ha5kdr-csb-config.inc.php');
 
 	// This defines the order in which the data can be found in the xml file.
 	define('ROWCODE_PARTNERCODE',			0);
@@ -182,6 +182,20 @@
 
 		if (!$res)
 			echo "error adding row, partnercode: $partnercode callsign: $callsign\n";
+	}
+
+	$result = mysql_query('select count(*) as `recordcount` from `' . DB_TABLE . '`');
+	$row = mysql_fetch_array($result);
+	$recordcount = $row['recordcount'];
+
+	if ($recordcount < 1000) {
+		$header = 'From: ' . PROCESSFAIL_MAIL_FROM . "\nReply-To: " . PROCESSFAIL_MAIL_FROM . "\nMIME-Version: 1.0\n";
+		$header .= "Content-type: text/plain; charset=UTF-8";
+
+		$subject = 'Callsign book processing error';
+		$msg = 'Error processing downloaded callsign book data!';
+
+		mail(PROCESSFAIL_MAIL_TO, '=?UTF-8?B?' . base64_encode($subject) .'?=', $msg, $header);
 	}
 
 	mysql_close($conn);
