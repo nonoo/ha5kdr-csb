@@ -22,6 +22,16 @@
 	define('ROWCODE_VALIDITY',				13);
 	define('ROWCODE_CHIEFOPERATOR',			14);
 
+	function sendfailemail() {
+		$header = 'From: ' . PROCESSFAIL_MAIL_FROM . "\nReply-To: " . PROCESSFAIL_MAIL_FROM . "\nMIME-Version: 1.0\n";
+		$header .= "Content-type: text/plain; charset=UTF-8";
+
+		$subject = 'Callsign book processing error';
+		$msg = 'Error processing downloaded callsign book data!';
+
+		mail(PROCESSFAIL_MAIL_TO, '=?UTF-8?B?' . base64_encode($subject) .'?=', $msg, $header);
+	}
+
 	if ($argc < 2) {
 		echo "usage: ${argv[0]} [xml file]\n";
 		return 1;
@@ -32,12 +42,14 @@
 
 	if (!$reader) {
 		echo "can't open ${argv[1]}!\n";
+		sendfailemail();
 		return 1;
 	}
 
 	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 	if (!$conn) {
 		echo "can't connect to mysql database!\n";
+		sendfailemail();
 		return 1;
 	}
 
@@ -45,6 +57,7 @@
 	if (!$db) {
 		mysql_close($conn);
 		echo "can't connect to mysql database!\n";
+		sendfailemail();
 		return 1;
 	}
 
@@ -53,6 +66,7 @@
 
 	if (!mysql_query('truncate table `' . DB_TABLE . '`')) {
 		echo "can't truncate table\n";
+		sendfailemail();
 		return 1;
 	}
 
@@ -188,15 +202,8 @@
 	$row = mysql_fetch_array($result);
 	$recordcount = $row['recordcount'];
 
-	if ($recordcount < 1000) {
-		$header = 'From: ' . PROCESSFAIL_MAIL_FROM . "\nReply-To: " . PROCESSFAIL_MAIL_FROM . "\nMIME-Version: 1.0\n";
-		$header .= "Content-type: text/plain; charset=UTF-8";
-
-		$subject = 'Callsign book processing error';
-		$msg = 'Error processing downloaded callsign book data!';
-
-		mail(PROCESSFAIL_MAIL_TO, '=?UTF-8?B?' . base64_encode($subject) .'?=', $msg, $header);
-	}
+	if ($recordcount < 1000)
+		sendfailemail();
 
 	mysql_close($conn);
 ?>
