@@ -46,6 +46,16 @@
 		return 1;
 	}
 
+	// Moving to the first <Row /> node which contain user data
+	while ($reader->read() && $reader->name !== 'Row')
+		;
+
+	if ($reader->name !== 'Row') {
+		echo "can't find beginning of data!\n";
+		sendfailemail();
+		return 1;
+	}
+
 	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 	if (!$conn) {
 		echo "can't connect to mysql database!\n";
@@ -69,10 +79,6 @@
 		sendfailemail();
 		return 1;
 	}
-
-	// Moving to the first <Row /> node which contain user data
-	while ($reader->read() && $reader->name !== 'Row')
-		;
 
 	while ($reader->read()) {
 		// Moving to the next row.
