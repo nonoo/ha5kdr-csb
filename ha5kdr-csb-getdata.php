@@ -67,7 +67,7 @@
 	$result = mysql_query('select * from `' . DB_TABLE . '` ' . $search . 'order by ' . mysql_real_escape_string($sorting) .
 		' limit ' . mysql_real_escape_string($startindex) . ',' . mysql_real_escape_string($pagesize));
 	$rows = array();
-	while ($row = mysql_fetch_array($result))
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC))
 	    $rows[] = $row;
 
 	$jtableresult = array();
