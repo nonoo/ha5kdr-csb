@@ -8,7 +8,7 @@ Downloader scripts also included (notice: they should not be run from the www-da
 
 Edit and rename *ha5kdr-csb-config-example.inc.php* to *ha5kdr-csb-config.inc.php*,
 *ha5kdr-csb-example.css* to *ha5kdr-csb.css*, then enable the plugin on the
-Wordpress plugin configuration page. To show the graphs of a context, insert
+Wordpress plugin configuration page. To show the callsign data table, insert
 this to a Wordpress page or post:
 
 ```
