@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: HA5KDR Callsign Book
- * Plugin URI: https://github.com/nonoo/ha5kdr-csb-wordpress-plugin
+ * Plugin URI: https://github.com/nonoo/ha5kdr-csb
  * Description: Displays a searchable callsign book table.
  * Version: 1.0
  * Author: Nonoo
