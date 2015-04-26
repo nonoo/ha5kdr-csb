@@ -10,7 +10,8 @@
 */
 
 function ha5kdrcsb_generate() {
-	$out = '<form id="ha5kdr-csb-search">' . "\n";
+	$out = '<img id="ha5kdr-csb-loader" src="' . plugins_url('loader.gif', __FILE__) . '" />' . "\n";
+	$out .= '<form id="ha5kdr-csb-search">' . "\n";
 	$out .= '	<input type="text" id="ha5kdr-csb-search-string" />' . "\n";
 	$out .= '	<input type="submit" id="ha5kdr-csb-search-button" value="Keresés" />' . "\n";
 	$out .= '</form>' . "\n";
@@ -42,11 +43,18 @@ function ha5kdrcsb_generate() {
 	$out .= '				chiefoperator: { title: "' . __('Operator', 'ha5kdr-csb') . '", visibility: "hidden" }' . "\n";
 	$out .= '			}' . "\n";
 	$out .= '		});' . "\n";
+	$out .= '		function csb_update_showloader() {' . "\n";
+	$out .= '			$("#ha5kdr-csb-loader").fadeIn();' . "\n";
+	$out .= '		}' . "\n";
+	$out .= '		function csb_update_hideloader() {' . "\n";
+	$out .= '			$("#ha5kdr-csb-loader").fadeOut();' . "\n";
+	$out .= '		}' . "\n";
 	$out .= '		$("#ha5kdr-csb-search-button").click(function (e) {' . "\n";
 	$out .= '			e.preventDefault();' . "\n";
+	$out .= '			csb_update_showloader();' . "\n";
 	$out .= '			$("#ha5kdr-csb-container").jtable("load", {' . "\n";
 	$out .= '				searchfor: $("#ha5kdr-csb-search-string").val()' . "\n";
-	$out .= '			});' . "\n";
+	$out .= '			}, csb_update_hideloader);' . "\n";
 	$out .= '		});' . "\n";
 	$out .= '		$("#ha5kdr-csb-search-button").click();' . "\n";
 	$out .= '	});' . "\n";
