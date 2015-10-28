@@ -176,21 +176,21 @@
 			'`licensedate`, ' .
 			'`validity`, ' .
 			'`chiefoperator`) values (' .
-			'"' . $conn->real_escape_string($partnercode) . '", ' .
-			'"' . $conn->real_escape_string($name) . '", ' .
-			'"' . $conn->real_escape_string($country) . '", ' .
-			'"' . $conn->real_escape_string($zip) . '", ' .
-			'"' . $conn->real_escape_string($city) . '", ' .
-			'"' . $conn->real_escape_string($streethouse) . '", ' .
-			'"' . $conn->real_escape_string($licensenumber) . '", ' .
-			'"' . $conn->real_escape_string($callsign) . '", ' .
-			'"' . $conn->real_escape_string($communityorprivate) . '", ' .
-			'"' . $conn->real_escape_string($state) . '", ' .
-			'"' . $conn->real_escape_string($levelofexam) . '", ' .
-			'"' . $conn->real_escape_string($morse) . '", ' .
-			'"' . $conn->real_escape_string($licensedate) . '", ' .
-			'"' . $conn->real_escape_string($validity) . '", ' .
-			'"' . $conn->real_escape_string($chiefoperator) . '")');
+			'"' . $conn->escape_string($partnercode) . '", ' .
+			'"' . $conn->escape_string($name) . '", ' .
+			'"' . $conn->escape_string($country) . '", ' .
+			'"' . $conn->escape_string($zip) . '", ' .
+			'"' . $conn->escape_string($city) . '", ' .
+			'"' . $conn->escape_string($streethouse) . '", ' .
+			'"' . $conn->escape_string($licensenumber) . '", ' .
+			'"' . $conn->escape_string($callsign) . '", ' .
+			'"' . $conn->escape_string($communityorprivate) . '", ' .
+			'"' . $conn->escape_string($state) . '", ' .
+			'"' . $conn->escape_string($levelofexam) . '", ' .
+			'"' . $conn->escape_string($morse) . '", ' .
+			'"' . $conn->escape_string($licensedate) . '", ' .
+			'"' . $conn->escape_string($validity) . '", ' .
+			'"' . $conn->escape_string($chiefoperator) . '")');
 
 		if (!$res)
 			echo "error adding row, partnercode: $partnercode callsign: $callsign\n";
