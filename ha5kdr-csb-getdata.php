@@ -60,7 +60,7 @@
 	$result = $conn->query('select * from `' . DB_TABLE . '` ' . $search . 'order by ' . $conn->escape_string($sorting) .
 		' limit ' . $conn->escape_string($startindex) . ',' . $conn->escape_string($pagesize));
 	$rows = array();
-	while ($row = $result->fetch_array(MYSQL_ASSOC))
+	while ($row = $result->fetch_array(MYSQLI_ASSOC))
 	    $rows[] = $row;
 
 	$jtableresult = array();
