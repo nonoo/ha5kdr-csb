@@ -56,25 +56,17 @@
 		return 1;
 	}
 
-	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		echo "can't connect to mysql database!\n";
 		sendfailemail();
 		return 1;
 	}
 
-	$db = mysql_select_db(DB_NAME, $conn);
-	if (!$db) {
-		mysql_close($conn);
-		echo "can't connect to mysql database!\n";
-		sendfailemail();
-		return 1;
-	}
+	$conn->query("set names 'utf8'");
+	$conn->query("set charset 'utf8'");
 
-	mysql_query("set names 'utf8'");
-	mysql_query("set charset 'utf8'");
-
-	if (!mysql_query('truncate table `' . DB_TABLE . '`')) {
+	if (!$conn->query('truncate table `' . DB_TABLE . '`')) {
 		echo "can't truncate table\n";
 		sendfailemail();
 		return 1;
@@ -168,7 +160,7 @@
 		if ($partnercode == '')
 			continue;
 
-		$res = mysql_query('insert into `' . DB_TABLE . '` (' .
+		$res = $conn->query('insert into `' . DB_TABLE . '` (' .
 			'`partnercode`, ' .
 			'`name`, ' .
 			'`country`, ' .
@@ -184,32 +176,32 @@
 			'`licensedate`, ' .
 			'`validity`, ' .
 			'`chiefoperator`) values (' .
-			'"' . mysql_real_escape_string($partnercode) . '", ' .
-			'"' . mysql_real_escape_string($name) . '", ' .
-			'"' . mysql_real_escape_string($country) . '", ' .
-			'"' . mysql_real_escape_string($zip) . '", ' .
-			'"' . mysql_real_escape_string($city) . '", ' .
-			'"' . mysql_real_escape_string($streethouse) . '", ' .
-			'"' . mysql_real_escape_string($licensenumber) . '", ' .
-			'"' . mysql_real_escape_string($callsign) . '", ' .
-			'"' . mysql_real_escape_string($communityorprivate) . '", ' .
-			'"' . mysql_real_escape_string($state) . '", ' .
-			'"' . mysql_real_escape_string($levelofexam) . '", ' .
-			'"' . mysql_real_escape_string($morse) . '", ' .
-			'"' . mysql_real_escape_string($licensedate) . '", ' .
-			'"' . mysql_real_escape_string($validity) . '", ' .
-			'"' . mysql_real_escape_string($chiefoperator) . '")');
+			'"' . $conn->real_escape_string($partnercode) . '", ' .
+			'"' . $conn->real_escape_string($name) . '", ' .
+			'"' . $conn->real_escape_string($country) . '", ' .
+			'"' . $conn->real_escape_string($zip) . '", ' .
+			'"' . $conn->real_escape_string($city) . '", ' .
+			'"' . $conn->real_escape_string($streethouse) . '", ' .
+			'"' . $conn->real_escape_string($licensenumber) . '", ' .
+			'"' . $conn->real_escape_string($callsign) . '", ' .
+			'"' . $conn->real_escape_string($communityorprivate) . '", ' .
+			'"' . $conn->real_escape_string($state) . '", ' .
+			'"' . $conn->real_escape_string($levelofexam) . '", ' .
+			'"' . $conn->real_escape_string($morse) . '", ' .
+			'"' . $conn->real_escape_string($licensedate) . '", ' .
+			'"' . $conn->real_escape_string($validity) . '", ' .
+			'"' . $conn->real_escape_string($chiefoperator) . '")');
 
 		if (!$res)
 			echo "error adding row, partnercode: $partnercode callsign: $callsign\n";
 	}
 
-	$result = mysql_query('select count(*) as `recordcount` from `' . DB_TABLE . '`');
-	$row = mysql_fetch_array($result);
+	$result = $conn->query('select count(*) as `recordcount` from `' . DB_TABLE . '`');
+	$row = $result->fetch_array();
 	$recordcount = $row['recordcount'];
 
 	if ($recordcount < 1000)
 		sendfailemail();
 
-	mysql_close($conn);
+	$conn->close();
 ?>

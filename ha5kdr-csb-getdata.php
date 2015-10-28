@@ -8,21 +8,14 @@
 
 	include('ha5kdr-csb-config.inc.php');
 
-	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
+	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
 		echo "can't connect to mysql database!\n";
 		return;
 	}
 
-	$db = mysql_select_db(DB_NAME, $conn);
-	if (!$db) {
-		mysql_close($conn);
-		echo "can't connect to mysql database!\n";
-		return;
-	}
-
-	mysql_query("set names 'utf8'");
-	mysql_query("set charset 'utf8'");
+	$conn->query("set names 'utf8'");
+	$conn->query("set charset 'utf8'");
 
 	$searchfor = sanitize($_POST['searchfor']);
 	$searchtoks = explode(' ', $searchfor);
@@ -33,7 +26,7 @@
 		else
 			$search .= 'and ';
 
-		$searchtok = mysql_real_escape_string($searchtoks[$i]);
+		$searchtok = $conn->escape_string($searchtoks[$i]);
 		$search .= "(`partnercode` like '%$searchtok%' or " .
 			"`name` like '%$searchtok%' or " .
 			"`country` like '%$searchtok%' or " .
@@ -60,14 +53,14 @@
 		return;
 
 	// Getting record count
-	$result = mysql_query('select count(*) as `recordcount` from `' . DB_TABLE . '` ' . $search);
-	$row = mysql_fetch_array($result);
+	$result = $conn->query('select count(*) as `recordcount` from `' . DB_TABLE . '` ' . $search);
+	$row = $result->fetch_array();
 	$recordcount = $row['recordcount'];
 
-	$result = mysql_query('select * from `' . DB_TABLE . '` ' . $search . 'order by ' . mysql_real_escape_string($sorting) .
-		' limit ' . mysql_real_escape_string($startindex) . ',' . mysql_real_escape_string($pagesize));
+	$result = $conn->query('select * from `' . DB_TABLE . '` ' . $search . 'order by ' . $conn->escape_string($sorting) .
+		' limit ' . $conn->escape_string($startindex) . ',' . $conn->escape_string($pagesize));
 	$rows = array();
-	while ($row = mysql_fetch_array($result, MYSQL_ASSOC))
+	while ($row = $result->fetch_array(MYSQL_ASSOC))
 	    $rows[] = $row;
 
 	$jtableresult = array();
@@ -76,5 +69,5 @@
 	$jtableresult['Records'] = $rows;
 	echo json_encode($jtableresult);
 
-	mysql_close($conn);
+	$conn->close();
 ?>
