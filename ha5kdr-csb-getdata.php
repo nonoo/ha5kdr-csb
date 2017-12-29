@@ -39,8 +39,6 @@
 			"`state` like '%$searchtok%' or " .
 			"`levelofexam` like '%$searchtok%' or " .
 			"`morse` like '%$searchtok%' or " .
-			"`licensedate` like '%$searchtok%' or " .
-			"`validity` like '%$searchtok%' or " .
 			"`chiefoperator` like '%$searchtok%') ";
 	}
 
